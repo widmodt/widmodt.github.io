@@ -16,8 +16,6 @@ function init() {
 addListener(boxes);
 }
 
-
-
 function changeColor(item) {
     counter++;
     item.target.style.backgroundColor = 'black';
@@ -47,4 +45,3 @@ function addListener(elements) {
         });
     });
 }
-addListener(boxes);
