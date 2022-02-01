@@ -3,28 +3,25 @@
 const wrapper = document.querySelector('.wrapper');
 const h = window.innerHeight - 10;
 const w = window.innerWidth - 7;
-const kolvo = Math.floor(h / 60) * Math.floor(w / 60);
+const number =  Math.floor(h / 60) * Math.floor(w / 60);
 let boxes = [];
 let counter = 0;
 
 init(boxes);
 
-function init(list) {
-    for (let i = 0; i < kolvo; i++) {
+function init() {
+    for (let i = 0; i < number; i++) {
         const box = document.createElement('div');
         box.classList.add('box');
         wrapper.append(box);
-        list.push(box);
+        boxes.push(box);
     }
-    addListener(list);
+    addListener(wrapper);
 }
-
-
 
 function changeColor(item) {
     counter++;
-    item.target.style.backgroundColor = 'rgba(247, 112, 112, 0.822)';
-    item.target.innerText = `${counter}`;
+    item.style.backgroundColor = 'rgba(150, 100, 150, 0.863';
     checkFilled();
 }
 
@@ -32,18 +29,20 @@ function checkFilled() {
     if (counter == boxes.length) {
         boxes.forEach((i) => {
             setTimeout(() => {
-                i.style.backgroundColor = 'rgba(255, 182, 249, 0.863)';
+                i.style.backgroundColor = '';
                 i.innerText = ``;
-                i.removeEventListener('mouseenter', changeColor);
+                i.removeEventListener('click', changeColor);
                 counter = 0;
-                addListener(boxes);
             }, 1000);
         });
+        addListener(wrapper);
     }
 }
 
-function addListener(list) {
-    list.forEach(item => {
-        item.addEventListener('mouseenter', changeColor, {once: true});
+function addListener(wrapper) {
+    wrapper.addEventListener('click', (e) => {
+        if (e.target.matches('div.box')) {
+            changeColor(e.target);
+        };
     });
 }
