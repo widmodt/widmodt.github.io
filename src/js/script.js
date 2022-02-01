@@ -1,5 +1,5 @@
 'use strict';
-init();
+
 const wrapper = document.querySelector('.wrapper');
 const h = window.innerHeight - 10;
 const w = window.innerWidth - 7;
@@ -13,8 +13,12 @@ function init() {
         box.classList.add('box');
         wrapper.append(box);
     }
-addListener(boxes);
+
 }
+
+init();
+const boxes = document.querySelectorAll('.box');
+addListener(boxes);
 
 function changeColor(item) {
     counter++;
